@@ -1,0 +1,9 @@
+rootProject.name = 'ImageEffects'
+
+include ':app'
+
+include ':RNMaterialKit'
+project(':RNMaterialKit').projectDir = file('../node_modules/react-native-material-kit/android')
+
+include ':RNGL'
+project(':RNGL').projectDir = file('../node_modules/gl-react-native/android')

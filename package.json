@@ -1,0 +1,60 @@
+{
+  "name": "gl-react-image-effects",
+  "version": "1.0.0",
+  "description": "universal image app that uses different gl-react components",
+  "scripts": {
+    "start": "budo --live --debug index.web.js"
+  },
+  "browserify": {
+    "transform": [
+      [
+        "babelify",
+        {
+          "presets": [
+            "es2015",
+            "stage-1",
+            "react"
+          ]
+        }
+      ]
+    ]
+  },
+  "dependencies": {
+    "gl-react": "^2.0.2",
+    "gl-react-blur": "^1.0.0",
+    "gl-react-color-matrix": "^1.0.0",
+    "gl-react-contrast-saturation-brightness": "^1.0.0",
+    "gl-react-dom": "^2.0.1",
+    "gl-react-hue-rotate": "^1.0.0",
+    "gl-react-native": "^2.1.2",
+    "gl-react-negative": "^1.0.0",
+    "react": "^0.14.3",
+    "react-dom": "^0.14.3",
+    "react-native": "^0.16.0",
+    "react-native-material-kit": "^0.2.4"
+  },
+  "devDependencies": {
+    "babel-eslint": "^4.1.6",
+    "babel-preset-es2015": "^6.1.18",
+    "babel-preset-react": "^6.1.18",
+    "babel-preset-stage-1": "^6.1.18",
+    "babelify": "^7.2.0",
+    "browserify": "^12.0.1",
+    "budo": "^7.0.2",
+    "eslint": "^1.10.3",
+    "eslint-plugin-react": "^3.11.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gre/gl-react-image-effects.git"
+  },
+  "keywords": [
+    "gl-react"
+  ],
+  "author": "Gaëtan Renaudeau",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gre/gl-react-image-effects/issues"
+  },
+  "homepage": "https://github.com/gre/gl-react-image-effects#readme"
+}
