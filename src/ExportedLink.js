@@ -16,16 +16,15 @@ const styles = {
 class ExportedLink extends Component {
 
   render () {
-    const { exported } = this.props;
-    return <a style={styles.a} href={exported} download="exported.png">
-        <img src={exported} width="100%" />
-        Click To Download
+    const { children } = this.props;
+    return <a style={styles.a} href={children} target="_blank">
+        {children}
       </a>;
   }
 }
 
 ExportedLink.propTypes = {
-  exported: PropTypes.string.isRequired
+  children: PropTypes.string.isRequired
 };
 
 module.exports = ExportedLink;

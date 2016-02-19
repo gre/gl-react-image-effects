@@ -11,6 +11,7 @@ import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
 import com.github.xinthink.rnmk.ReactMaterialKitPackage;
+import com.imagepicker.ImagePickerPackage;
 import com.projectseptember.RNGL.RNGLPackage;
 
 public class MainActivity extends Activity implements DefaultHardwareBackBtnHandler {
@@ -30,6 +31,7 @@ public class MainActivity extends Activity implements DefaultHardwareBackBtnHand
                 .addPackage(new MainReactPackage())
                 .addPackage(new ReactMaterialKitPackage())
                 .addPackage(new RNGLPackage())
+                .addPackage(new ImagePickerPackage(this))
                 .setUseDeveloperSupport(BuildConfig.DEBUG)
                 .setInitialLifecycleState(LifecycleState.RESUMED)
                 .build();

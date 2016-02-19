@@ -4,14 +4,15 @@ const styles = StyleSheet.create({
   root: {
     flexDirection: "column",
     flex: 1,
-    minWidth: 400,
     paddingTop: 10,
     paddingBottom: 40,
     backgroundColor: "#EEE",
+    /*
     shadowColor: "#000",
     shadowRadius: 6,
     shadowOffset: { width: 0, height: 0 },
     shadowOpacity: 0.3
+    */
   }
 });
 

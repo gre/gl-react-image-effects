@@ -2,30 +2,30 @@ import React, {Component, PropTypes} from "react";
 import {Surface} from "gl-react-dom";
 import ImageEffects from "./ImageEffects";
 
-const vdomForContent = ({ url, mainType, type }, onLoadSize) =>
+const vdomForContent = ({ uri, mainType, type }, onLoadSize) =>
   mainType === "video" ?
   <video loop autoPlay onLoad={e => onLoadSize(e.target.videoWidth, e.target.videoHeight)}>
-    <source type={type} src={url} />
+    <source type={type} src={uri} />
   </video> :
-  url ?
-  <img key={url} src={url} crossOrigin onLoad={e => onLoadSize(e.target.width, e.target.height)} /> :
-  url;
+  uri ?
+  <img key={uri} src={uri} crossOrigin onLoad={e => onLoadSize(e.target.width, e.target.height)} /> :
+  uri;
 
 const contentForDropEvent = e => {
   const file = e.dataTransfer.files[0];
   if (file) {
     return {
-      url: URL.createObjectURL(file),
+      uri: URL.createObjectURL(file),
       type: file.type,
       mainType: file.type.split("/")[0]
     };
   }
   const text = e.dataTransfer.getData("text");
   if (text && text.match(/http[s]?:\/\//)) {
-    return { url: text };
+    return { uri: text };
   }
-  return { url: null };
-}
+  return { uri: null };
+};
 
 const styles = {
   dropDescr: {
@@ -56,31 +56,31 @@ export default class Viewport extends Component {
     e.preventDefault();
     e.stopPropagation();
     onLoadNewContent(contentForDropEvent(e));
-  }
+  };
 
   onDragEnter = e => {
     e.preventDefault();
     e.stopPropagation();
-  }
+  };
 
   onDragOver = e => {
     e.preventDefault();
     e.stopPropagation();
-  }
+  };
 
   onLoadSize = (width, height) => {
     const { content, onLoadNewContent } = this.props;
     onLoadNewContent({ ...content, width, height });
-  }
+  };
 
   onClickUrl = e => {
     const { onLoadNewContent } = this.props;
     e.preventDefault();
-    onLoadNewContent({ url: e.target.href });
-  }
+    onLoadNewContent({ uri: e.target.href });
+  };
 
-  captureFrame = cb =>
-    this.refs.surface.captureFrame(cb)
+  captureFrame = opts =>
+    this.refs.surface.captureFrame(opts);
 
   render () {
     const {

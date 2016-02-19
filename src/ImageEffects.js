@@ -1,11 +1,11 @@
-import GL, { React } from "gl-react";
+import GL from "gl-react";
+import React, {PropTypes} from "react";
 import {Blur} from "gl-react-blur";
 import {ContrastSaturationBrightness} from "gl-react-contrast-saturation-brightness";
 import {Negative} from "gl-react-negative";
 import {HueRotate} from "gl-react-hue-rotate";
 import {ColorMatrix} from "gl-react-color-matrix";
-const {PropTypes} = React;
-
+import {Flyeye} from "./Flyeye";
 
 const mixArrays = (arr1, arr2, m) => arr1.map((v, i) => (1-m) * v + m * arr2[i]);
 
@@ -34,26 +34,29 @@ export default GL.createComponent(
   brightness,
   negative,
   hue,
-  sepia
+  sepia,
+  flyeye,
 }) =>
 
 <ColorMatrix matrix={matrixForSepia(sepia)}>
-  <HueRotate hue={hue}>
-    <Negative factor={negative}>
-      <ContrastSaturationBrightness
-        contrast={contrast}
-        saturation={saturation}
-        brightness={brightness}>
-            <Blur
-              passes={6}
-              factor={blur}
-              width={width}
-              height={height}>
-              {children}
-            </Blur>
-      </ContrastSaturationBrightness>
-    </Negative>
-  </HueRotate>
+  <Flyeye value={flyeye}>
+    <HueRotate hue={hue}>
+      <Negative factor={negative}>
+        <ContrastSaturationBrightness
+          contrast={contrast}
+          saturation={saturation}
+          brightness={brightness}>
+              <Blur
+                passes={6}
+                factor={blur}
+                width={width}
+                height={height}>
+                {children}
+              </Blur>
+        </ContrastSaturationBrightness>
+      </Negative>
+    </HueRotate>
+  </Flyeye>
 </ColorMatrix>,
 
   {

@@ -2,9 +2,8 @@ import React, {Component, PropTypes, View, StyleSheet} from "react-native";
 
 const styles = StyleSheet.create({
   root: {
-    width: 200,
     flexDirection: "column",
-    alignSelf: "center",
+    alignItems: "center",
     paddingTop: 20
   }
 });

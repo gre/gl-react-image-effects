@@ -12,7 +12,7 @@ export default class AppContainer extends Component {
   render () {
     const {children} = this.props;
     return (
-      <ScrollView style={styles.root} contentContainerStyle={styles.container}>
+      <ScrollView bounces={false} style={styles.root} contentContainerStyle={styles.container}>
         {children}
       </ScrollView>
     );

@@ -7,3 +7,6 @@ project(':RNMaterialKit').projectDir = file('../node_modules/react-native-materi
 
 include ':RNGL'
 project(':RNGL').projectDir = file('../node_modules/gl-react-native/android')
+
+include ':react-native-image-picker'
+project(':react-native-image-picker').projectDir = file('../node_modules/react-native-image-picker/android')

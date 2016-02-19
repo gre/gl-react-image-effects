@@ -1,7 +1,8 @@
-import React, {Component, PropTypes, View} from "react-native";
+import React, {Component, PropTypes, View, TouchableOpacity, NativeModules} from "react-native";
 import {Surface} from "gl-react-native";
 import ImageEffects from "./ImageEffects";
 import Dimensions from "Dimensions";
+const {UIImagePickerManager} = NativeModules;
 
 const { width: windowWidth, height: windowHeight } = Dimensions.get("window");
 
@@ -11,8 +12,12 @@ export default class Viewport extends Component {
     super(props);
   }
 
-  captureFrame = cb =>
-    this.refs.surface.captureFrame(cb)
+  captureFrame = opts => this.refs.surface.captureFrame(opts);
+
+  onPress = () =>
+    UIImagePickerManager.showImagePicker({}, ({ uri, width, height }) => {
+      if (uri) this.props.onLoadNewContent({ uri, width, height });
+    });
 
   render () {
     const {
@@ -27,13 +32,15 @@ export default class Viewport extends Component {
     else
       w = h / ratio;
 
-    return <View style={{ minWidth: width, height, flex: 1 }}>
-      <Surface ref="surface" width={w} height={h}>
-        <ImageEffects width={w} height={h} {...effects}>
-          {content.url}
-        </ImageEffects>
-      </Surface>
-    </View>;
+    return <TouchableOpacity onPress={this.onPress}>
+      <View style={{ height, flex: 1, alignItems: "center" }}>
+        <Surface ref="surface" width={w} height={h}>
+          <ImageEffects width={w} height={h} {...effects}>
+            {content.uri}
+          </ImageEffects>
+        </Surface>
+      </View>
+    </TouchableOpacity>;
   }
 }
 

@@ -1,7 +1,9 @@
-import "gl-react/react";
 import React from "react";
 import {render} from "react-dom";
 import App from "./src/App";
+import fetch from "isomorphic-fetch";
+
+if (!window.fetch) window.fetch = fetch;
 
 Object.assign(document.body.style, {
   backgroundColor: "#eee",
